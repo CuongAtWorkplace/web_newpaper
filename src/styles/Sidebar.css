@@ -1,0 +1,7 @@
+.sidebar {
+    width: 200px;
+    background-color: #0d0d0d;
+    padding: 20px;
+    height: 100vh; /* Use vh unit for 100% of viewport height */
+}
+  

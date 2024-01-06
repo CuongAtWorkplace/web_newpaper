@@ -1,0 +1,42 @@
+/* src/pages/Home.css */
+.home-page {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.input-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 8px;
+    /* Add any additional styling for the input */
+}
+
+.input-container button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+.centered-button {
+    text-align: center;
+    margin-top: 20px;
+    /* Điều chỉnh khoảng cách giữa nút và phần còn lại của trang */
+}
+
+.back_but {
+    width: 150px;
+    height: 50px;
+    background-color: #007bff;
+    color: #fff;
+}
