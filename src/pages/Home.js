@@ -12,6 +12,8 @@ const Home = () => {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [link, setLink] = useState('');
+
 
   const [showModal, setShowModal] = useState(false);
   const [showTitleModal, setTitleShowModal] = useState(false);
@@ -27,7 +29,11 @@ const Home = () => {
     } else if (previewType === 'content') {
       setPreviewContent(content);
       setTitleShowModal(true);
+    } else if (previewType === 'link') {
+      setPreviewContent(link);
+      setTitleShowModal(true);
     }
+
   };
 
 
@@ -41,9 +47,36 @@ const Home = () => {
     setShowModal(false);
   };
 
-  const handlePressSubmit = () => {
-    // Hiển thị thông báo khi nút "Submit" được nhấn
-    alert('Oke');
+  const handlePressSubmit = async() => {
+    try {
+
+    const apiUrl = 'https://example.com/api'; // Thay thế bằng URL thực của API
+
+    const requestBody = {
+      title,
+      url,
+      link,
+      content,
+    };
+
+    const response = await fetch(apiUrl, {
+      method: 'POST', // Đổi thành 'GET' nếu API yêu cầu
+      headers: {
+        'Content-Type': 'application/json',
+        // Thêm các header khác nếu cần thiết
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log('API response:', responseData);
+  } catch(error) {
+    console.error('Error sending API request:', error.message);
+  }
   };
 
 
@@ -72,8 +105,10 @@ const Home = () => {
           <input
             type="text"
             placeholder="Enter link"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
           />
-          <button>Preview</button>
+          <button onClick={() => handlePreviewClick('link')}>Preview Link</button>
         </div>
 
         <h2>Enter your Title :</h2>
